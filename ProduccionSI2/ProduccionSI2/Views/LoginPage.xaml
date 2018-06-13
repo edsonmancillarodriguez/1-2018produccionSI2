@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage 
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="ProduccionSI2.Views.LoginPage"
+    BindingContext="{Binding Main, Source={StaticResource Locator}}"
+    Title="Login">
+    <ContentPage.Content>
+        <ScrollView>
+        <StackLayout
+            Padding="10,20">
+                <Label
+                FontAttributes="Bold"
+                FontSize="Large"
+                HorizontalOptions="Center"
+                Text="Inicio Sesion Produccion">
+                </Label>
+            <Image
+                Source="icono"
+                WidthRequest="100">
+            </Image>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="2*"/>
+                </Grid.ColumnDefinitions>
+                <Label
+                    FontAttributes="Bold"
+                    FontSize="Medium"
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Text="User">
+                </Label>
+                <Entry
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    Placeholder="Ingrese Usuario">
+                </Entry>
+                <Label
+                    FontAttributes="Bold"
+                    FontSize="Medium"
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    Text="Password">
+                </Label>
+                <Entry
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    Placeholder="Ingrese su password...">
+                </Entry>
+            </Grid>
+            <StackLayout
+                Orientation="Horizontal">
+                    <Label
+                        HorizontalOptions="StartAndExpand"
+                        Text="Remmemberme on this device"
+                        VerticalOptions="Center">
+                        
+                    </Label>
+                    <Switch
+                        HorizontalOptions="End">
+                    </Switch>
+            </StackLayout>
+            <ActivityIndicator>
+            </ActivityIndicator>
+            <Button
+                BackgroundColor="Navy"
+                BorderRadius="50"
+                Text="Log-in"
+                TextColor="White">
+            </Button>
+        </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
