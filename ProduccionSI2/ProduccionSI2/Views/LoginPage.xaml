@@ -6,70 +6,78 @@
     BindingContext="{Binding Main, Source={StaticResource Locator}}"
     Title="Login">
     <ContentPage.Content>
-        <ScrollView>
-        <StackLayout
-            Padding="10,20">
-                <Label
-                FontAttributes="Bold"
-                FontSize="Large"
-                HorizontalOptions="Center"
-                Text="Inicio Sesion Produccion">
-                </Label>
-            <Image
-                Source="icono"
-                WidthRequest="100">
-            </Image>
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="2*"/>
-                </Grid.ColumnDefinitions>
-                <Label
-                    FontAttributes="Bold"
-                    FontSize="Medium"
-                    Grid.Row="0"
-                    Grid.Column="0"
-                    Text="User">
-                </Label>
-                <Entry
-                    Grid.Row="0"
-                    Grid.Column="1"
-                    Placeholder="Ingrese Usuario">
-                </Entry>
-                <Label
-                    FontAttributes="Bold"
-                    FontSize="Medium"
-                    Grid.Row="1"
-                    Grid.Column="0"
-                    Text="Password">
-                </Label>
-                <Entry
-                    Grid.Row="1"
-                    Grid.Column="1"
-                    Placeholder="Ingrese su password...">
-                </Entry>
-            </Grid>
+        <ScrollView
+            BindingContext="{Binding Login}">
             <StackLayout
-                Orientation="Horizontal">
+                Padding="10,20">
+                <Image
+                    Source="icono"
+                    VerticalOptions="CenterAndExpand"
+                    WidthRequest="150">
+                </Image>
+                <Grid
+                    VerticalOptions="CenterAndExpand">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="2*"/>
+                    </Grid.ColumnDefinitions>
                     <Label
-                        HorizontalOptions="StartAndExpand"
-                        Text="Remmemberme on this device"
+                        FontAttributes="Bold"
+                        FontSize="Medium"
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        Text="User"
                         VerticalOptions="Center">
-                        
                     </Label>
-                    <Switch
-                        HorizontalOptions="End">
-                    </Switch>
+                    <Entry
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        Placeholder="Ingrese Usuario"
+                        Text="{Binding User, Mode=TwoWay}">
+                    </Entry>
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="Medium"
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        Text="Password"
+                        VerticalOptions="Center">
+                    </Label>
+                    <Entry
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        Placeholder="Ingrese su password..."
+                        Text="{Binding Password, Mode=TwoWay}">
+                    </Entry>
+                </Grid>
+                    <ActivityIndicator
+                        IsRunning="{Binding IsRunning, Mode=TwoWay}"
+                        VerticalOptions="CenterAndExpand">
+                    </ActivityIndicator>
+                    <StackLayout
+                        Orientation="Horizontal"
+                        VerticalOptions="CenterAndExpand">
+                        <Label
+                            HorizontalOptions="StartAndExpand"
+                            Text="Remmemberme on this device"
+                            VerticalOptions="CenterAndExpand">
+                        
+                        </Label>
+                        <Switch
+                            HorizontalOptions="End"
+                            IsToggled="{Binding IsRemembered, Mode=TwoWay}">
+                        </Switch>
+                </StackLayout>
+            
+                <Button
+                    BackgroundColor="Navy"
+                    BorderRadius="50"
+                    Command="{Binding LoginCommand}"
+                    Text="Log-in"
+                    TextColor="White"
+                    VerticalOptions="CenterAndExpand">
+                </Button>
             </StackLayout>
-            <ActivityIndicator>
-            </ActivityIndicator>
-            <Button
-                BackgroundColor="Navy"
-                BorderRadius="50"
-                Text="Log-in"
-                TextColor="White">
-            </Button>
-        </StackLayout>
         </ScrollView>
     </ContentPage.Content>
 </ContentPage>
