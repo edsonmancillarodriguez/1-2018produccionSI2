@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProduccionSI2.Views.PerfilUserPage"
+    BindingContext="{Binding Main, Source={StaticResource Locator}}"
+    Title="Perfil User">
+    <ContentPage.Content>
+        <StackLayout
+            BindingContext="{Binding PerfilUser}"
+            Padding="5">
+            <Label 
+                FontSize="Large"
+                HorizontalOptions="CenterAndExpand"
+                Text="Welcome to Perfil User!"
+                VerticalOptions="CenterAndExpand">
+            </Label>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -47,7 +47,8 @@
                         Grid.Row="1"
                         Grid.Column="1"
                         Placeholder="Ingrese su password..."
-                        Text="{Binding Password, Mode=TwoWay}">
+                        Text="{Binding Password, Mode=TwoWay}"
+                        IsPassword="True">
                     </Entry>
                 </Grid>
                     <ActivityIndicator
@@ -73,6 +74,7 @@
                     BackgroundColor="Navy"
                     BorderRadius="50"
                     Command="{Binding LoginCommand}"
+                    IsEnabled="{Binding IsEnable, Mode=TwoWay}"
                     Text="Log-in"
                     TextColor="White"
                     VerticalOptions="CenterAndExpand">
