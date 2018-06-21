@@ -6,5 +6,6 @@ namespace ProduccionSI2.ViewsModel
 {
     class PerfilUserViewModels
     {
+        
     }
 }

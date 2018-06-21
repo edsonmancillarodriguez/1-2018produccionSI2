@@ -9,9 +9,10 @@
             BindingContext="{Binding PerfilUser}"
             Padding="5">
             <Label 
+                BindingContext="{Binding Label1,Mode=TwoWay}"
                 FontSize="Large"
                 HorizontalOptions="CenterAndExpand"
-                Text="Welcome to Perfil User!"
+                Text="Ahora estas en el perfil de usuarios"
                 VerticalOptions="CenterAndExpand">
             </Label>
         </StackLayout>

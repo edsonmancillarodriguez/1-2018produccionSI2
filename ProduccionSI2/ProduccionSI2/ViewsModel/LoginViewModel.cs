@@ -6,6 +6,8 @@ namespace ProduccionSI2.ViewsModel
     using ProduccionSI2.Views;
     using System.ComponentModel;
     using System.Net.Http;
+    using System.Security.Cryptography;
+    using System.Text;
     using System.Windows.Input;
     using Xamarin.Forms;
 
@@ -64,7 +66,7 @@ namespace ProduccionSI2.ViewsModel
                 }
             }
         }
-        public bool IsRinnung
+        public bool IsRunning
         {
             get
             {
@@ -133,31 +135,61 @@ namespace ProduccionSI2.ViewsModel
                 this.Password = string.Empty;
                 return;
             }
-            this.User = string.Empty;
-            this.Password = string.Empty;
+            
 
-            IsRinnung = true;
+            IsRunning = true;
             HttpClient client = new HttpClient();
             client.BaseAddress = new System.Uri("https://si2uagrm.ml");
             string url = string.Format("/api_rest_log/log_rest/find/"+User);
             var response = await client.GetAsync(url);
             var result = response.Content.ReadAsStringAsync().Result;
-            IsRinnung = false;
+            
 
             if (string.IsNullOrEmpty(result))
             {
                 await Application.Current.MainPage.DisplayAlert("Error","servidor no responde","acceptar");
+                this.User = string.Empty;
+                this.Password = string.Empty;
+                IsRunning = false;
                 return;
             }
             else
             {
-                await Application.Current.MainPage.DisplayAlert("Error", result, "acceptar");
-                return;
+                string pass = GetSHA1(Password);
+                if (result.Contains(pass))
+                {
+                    MainViewModel.GetInstance().PerfilUser = new PerfilUserViewModels();
+                    await Application.Current.MainPage.Navigation.PushAsync(new PerfilUserPage());
+                    await Application.Current.MainPage.DisplayAlert("Welcome", "Te doy la bienvenida "+User, "acceptar");
+                    IsRunning = false;
+                    return;
+                }
+                else
+                {
+                    await Application.Current.MainPage.DisplayAlert("validacion", "User o Password incorrectos", "acceptar");
+                    IsRunning = false;
+                    return;
+                }
+                
+                
             }
 
+            
 
-            //MainViewModel.GetInstance().PerfilUser = new PerfilUserViewModels();
-            //await Application.Current.MainPage.Navigation.PushAsync(new PerfilUserPage());
+
+        }
+        #endregion
+
+        #region MisMetodosInventados
+        public static string GetSHA1(string str)
+        {
+            SHA1 sha1 = SHA1Managed.Create();
+            ASCIIEncoding encoding = new ASCIIEncoding();
+            byte[] stream = null;
+            StringBuilder sb = new StringBuilder();
+            stream = sha1.ComputeHash(encoding.GetBytes(str));
+            for (int i = 0; i < stream.Length; i++) sb.AppendFormat("{0:x2}", stream[i]);
+            return sb.ToString();
         }
         #endregion
     }

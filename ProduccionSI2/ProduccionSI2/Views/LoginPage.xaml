@@ -52,6 +52,7 @@
                     </Entry>
                 </Grid>
                     <ActivityIndicator
+                        Color="Black"
                         IsRunning="{Binding IsRunning, Mode=TwoWay}"
                         VerticalOptions="CenterAndExpand">
                     </ActivityIndicator>
